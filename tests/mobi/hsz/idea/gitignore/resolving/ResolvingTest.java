@@ -64,9 +64,9 @@ public class ResolvingTest extends LightPlatformCodeInsightFixtureTestCase {
         myFixture.getTempDirFixture().findOrCreateDir("dir2").createChildData(this, "fileName.txt");
         doTest("file<caret>Name.txt", "dir1/fileName.txt", "dir2/fileName.txt");
     }
-    
+
     private void doTest(@NotNull String beforeText, String... expectedResolve) {
-        myFixture.configureByText(GitFileType.INSTANCE, beforeText);
+        myFixture.configureByText(GitFileType.Companion.getINSTANCE(), beforeText);
         PsiPolyVariantReference reference = ((PsiPolyVariantReference) myFixture.getReferenceAtCaretPosition());
         assertNotNull(reference);
 

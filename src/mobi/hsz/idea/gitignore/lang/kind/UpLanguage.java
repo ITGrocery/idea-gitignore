@@ -53,6 +53,6 @@ public class UpLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return UpFileType.INSTANCE;
+        return UpFileType.Companion.getINSTANCE();
     }
 }

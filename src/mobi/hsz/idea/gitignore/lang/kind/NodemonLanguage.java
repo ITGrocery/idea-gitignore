@@ -53,7 +53,7 @@ public class NodemonLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return NodemonFileType.INSTANCE;
+        return NodemonFileType.Companion.getINSTANCE();
     }
 
     /**

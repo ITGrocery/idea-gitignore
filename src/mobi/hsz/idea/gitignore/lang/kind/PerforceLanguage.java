@@ -53,6 +53,6 @@ public class PerforceLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return PerforceFileType.INSTANCE;
+        return PerforceFileType.Companion.getINSTANCE();
     }
 }

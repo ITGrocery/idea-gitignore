@@ -53,7 +53,7 @@ public class NpmLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return NpmFileType.INSTANCE;
+        return NpmFileType.Companion.getINSTANCE();
     }
 
     /**

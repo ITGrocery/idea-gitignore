@@ -116,7 +116,7 @@ public class GitExcludeLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return GitExcludeFileType.INSTANCE;
+        return GitExcludeFileType.Companion.getINSTANCE();
     }
 
     /**

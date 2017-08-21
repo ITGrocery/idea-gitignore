@@ -54,7 +54,7 @@ public class MercurialLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return MercurialFileType.INSTANCE;
+        return MercurialFileType.Companion.getINSTANCE();
     }
 
     /**

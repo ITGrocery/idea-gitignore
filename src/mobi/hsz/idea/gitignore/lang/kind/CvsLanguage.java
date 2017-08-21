@@ -53,6 +53,6 @@ public class CvsLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return CvsFileType.INSTANCE;
+        return CvsFileType.Companion.getINSTANCE();
     }
 }

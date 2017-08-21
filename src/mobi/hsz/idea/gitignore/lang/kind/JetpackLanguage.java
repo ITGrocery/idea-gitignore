@@ -53,7 +53,7 @@ public class JetpackLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return JetpackFileType.INSTANCE;
+        return JetpackFileType.Companion.getINSTANCE();
     }
 
     /**

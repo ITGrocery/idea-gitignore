@@ -76,7 +76,7 @@ public class GitLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return GitFileType.INSTANCE;
+        return GitFileType.Companion.getINSTANCE();
     }
 
     /**

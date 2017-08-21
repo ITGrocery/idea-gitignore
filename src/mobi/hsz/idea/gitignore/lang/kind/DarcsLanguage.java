@@ -54,7 +54,7 @@ public class DarcsLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return DarcsFileType.INSTANCE;
+        return DarcsFileType.Companion.getINSTANCE();
     }
 
     /**

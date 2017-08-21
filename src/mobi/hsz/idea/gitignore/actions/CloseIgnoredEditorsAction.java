@@ -50,7 +50,7 @@ public class CloseIgnoredEditorsAction extends CloseEditorsActionBase {
     protected boolean isFileToClose(final EditorComposite editor, final EditorWindow window) {
         final FileStatusManager fileStatusManager = FileStatusManager.getInstance(window.getManager().getProject());
         return fileStatusManager != null &&
-                fileStatusManager.getStatus(editor.getFile()).equals(IgnoreFileStatusProvider.IGNORED);
+                fileStatusManager.getStatus(editor.getFile()).equals(IgnoreFileStatusProvider.Companion.getIGNORED());
     }
 
     /**

@@ -53,7 +53,7 @@ public class HelmLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return HelmFileType.INSTANCE;
+        return HelmFileType.Companion.getINSTANCE();
     }
 
     /**

@@ -53,7 +53,7 @@ public class DockerLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return DockerFileType.INSTANCE;
+        return DockerFileType.Companion.getINSTANCE();
     }
 
     /**

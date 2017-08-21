@@ -53,7 +53,7 @@ public class FloobitsLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return FloobitsFileType.INSTANCE;
+        return FloobitsFileType.Companion.getINSTANCE();
     }
 
     /**

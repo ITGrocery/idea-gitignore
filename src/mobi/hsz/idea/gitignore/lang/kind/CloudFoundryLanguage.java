@@ -53,7 +53,7 @@ public class CloudFoundryLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return CloudFoundryFileType.INSTANCE;
+        return CloudFoundryFileType.Companion.getINSTANCE();
     }
 
     /**

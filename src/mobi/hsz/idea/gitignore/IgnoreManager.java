@@ -218,7 +218,7 @@ public class IgnoreManager extends AbstractProjectComponent implements DumbAware
                 cachedOuterFiles.remove((IgnoreFileType) fileType);
 
                 if (fileType instanceof GitExcludeFileType) {
-                    cachedOuterFiles.remove(GitFileType.INSTANCE);
+                    cachedOuterFiles.remove(GitFileType.Companion.getINSTANCE());
                 }
                 expiringStatusCache.clear();
                 debouncedStatusesChanged.run();
@@ -329,7 +329,7 @@ public class IgnoreManager extends AbstractProjectComponent implements DumbAware
                 String relativePath;
                 final VirtualFile entryFile = value.getFile();
                 if (fileType instanceof GitExcludeFileType) {
-                    VirtualFile workingDirectory = GitExcludeFileType.getWorkingDirectory(myProject, entryFile);
+                    VirtualFile workingDirectory = GitExcludeFileType.Companion.getWorkingDirectory(myProject, entryFile);
                     if (workingDirectory == null || !Utils.isUnder(file, workingDirectory)) {
                         continue;
                     }

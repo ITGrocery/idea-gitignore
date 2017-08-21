@@ -53,7 +53,7 @@ public class ChefLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return ChefFileType.INSTANCE;
+        return ChefFileType.Companion.getINSTANCE();
     }
 
     /**

@@ -54,13 +54,13 @@ public class CompletionTest extends LightPlatformCodeInsightFixtureTestCase {
     }
 
     private void doTest(@NotNull String beforeText, @NotNull String afterText) {
-        myFixture.configureByText(GitFileType.INSTANCE, beforeText);
+        myFixture.configureByText(GitFileType.Companion.getINSTANCE(), beforeText);
         myFixture.completeBasic();
         myFixture.checkResult(afterText);
     }
 
     private void doTestVariants(@NotNull String beforeText, String... variants) {
-        myFixture.configureByText(GitFileType.INSTANCE, beforeText);
+        myFixture.configureByText(GitFileType.Companion.getINSTANCE(), beforeText);
         myFixture.completeBasic();
         assertContainsElements(myFixture.getLookupElementStrings(), variants);
     }

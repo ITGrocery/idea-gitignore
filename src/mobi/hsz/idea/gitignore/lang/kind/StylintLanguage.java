@@ -53,7 +53,7 @@ public class StylintLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return StylintFileType.INSTANCE;
+        return StylintFileType.Companion.getINSTANCE();
     }
 
     /**

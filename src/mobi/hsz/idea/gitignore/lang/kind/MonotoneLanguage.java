@@ -54,7 +54,7 @@ public class MonotoneLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return MonotoneFileType.INSTANCE;
+        return MonotoneFileType.Companion.getINSTANCE();
     }
 
     /**

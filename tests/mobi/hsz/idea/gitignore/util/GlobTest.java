@@ -24,7 +24,7 @@ public class GlobTest extends Common<Glob> {
     @Test
     public void testFind() {
         Glob.clearCache();
-        myFixture.configureByText(GitFileType.INSTANCE, createIgnoreContent("foo.txt", "bar.txt", "buz.txt", "vcsdir", "dir"));
+        myFixture.configureByText(GitFileType.Companion.getINSTANCE(), createIgnoreContent("foo.txt", "bar.txt", "buz.txt", "vcsdir", "dir"));
 
         final VirtualFile rootFile = getFixtureRootFile();
         final List<IgnoreEntry> children = getFixtureChildrenEntries();
@@ -97,7 +97,7 @@ public class GlobTest extends Common<Glob> {
     @Test
     public void testFindAsPaths() {
         Glob.clearCache();
-        myFixture.configureByText(GitFileType.INSTANCE, createIgnoreContent("foo.txt", "bar.txt", "buz.txt", "vcsdir", "dir"));
+        myFixture.configureByText(GitFileType.Companion.getINSTANCE(), createIgnoreContent("foo.txt", "bar.txt", "buz.txt", "vcsdir", "dir"));
 
         final VirtualFile rootFile = getFixtureRootFile();
         final List<IgnoreEntry> children = getFixtureChildrenEntries();

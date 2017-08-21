@@ -72,7 +72,7 @@ public class FossilLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return FossilFileType.INSTANCE;
+        return FossilFileType.Companion.getINSTANCE();
     }
 
     /**

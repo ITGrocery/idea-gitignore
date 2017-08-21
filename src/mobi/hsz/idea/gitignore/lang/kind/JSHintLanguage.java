@@ -53,7 +53,7 @@ public class JSHintLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return JSHintFileType.INSTANCE;
+        return JSHintFileType.Companion.getINSTANCE();
     }
 
     /**

@@ -53,6 +53,6 @@ public class BazaarLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return BazaarFileType.INSTANCE;
+        return BazaarFileType.Companion.getINSTANCE();
     }
 }

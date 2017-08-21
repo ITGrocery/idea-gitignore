@@ -53,6 +53,6 @@ public class TFLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return TFFileType.INSTANCE;
+        return TFFileType.Companion.getINSTANCE();
     }
 }

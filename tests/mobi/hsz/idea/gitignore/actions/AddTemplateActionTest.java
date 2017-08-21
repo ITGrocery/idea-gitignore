@@ -44,7 +44,7 @@ public class AddTemplateActionTest extends Common<AddTemplateAction> {
         Assert.assertEquals(IgnoreBundle.message("action.addTemplate.description"), presentation.getDescription());
         Assert.assertFalse("Action is not visible if there is no Ignore file context", presentation.isEnabledAndVisible());
 
-        myFixture.configureByText(IgnoreFileType.INSTANCE, "foo");
+        myFixture.configureByText(IgnoreFileType.Companion.getINSTANCE(), "foo");
         presentation = myFixture.testAction(action);
         Assert.assertTrue("Action is visible if there is Ignore file context", presentation.isEnabledAndVisible());
     }

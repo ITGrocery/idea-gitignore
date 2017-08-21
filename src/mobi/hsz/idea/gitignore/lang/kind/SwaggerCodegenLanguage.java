@@ -53,7 +53,7 @@ public class SwaggerCodegenLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return SwaggerCodegenFileType.INSTANCE;
+        return SwaggerCodegenFileType.Companion.getINSTANCE();
     }
 
     /**

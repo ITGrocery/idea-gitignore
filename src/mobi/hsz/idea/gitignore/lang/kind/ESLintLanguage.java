@@ -53,7 +53,7 @@ public class ESLintLanguage extends IgnoreLanguage {
     @NotNull
     @Override
     public IgnoreFileType getFileType() {
-        return ESLintFileType.INSTANCE;
+        return ESLintFileType.Companion.getINSTANCE();
     }
 
     /**
