@@ -268,7 +268,7 @@ public class UntrackFilesDialog extends DialogWrapper {
         HashMap<Repository, ArrayList<VirtualFile>> checked = getCheckedFiles();
         for (Map.Entry<Repository, ArrayList<VirtualFile>> entry : checked.entrySet()) {
             for (VirtualFile file : entry.getValue()) {
-                ExternalExec.removeFileFromTracking(file, entry.getKey());
+                ExternalExec.INSTANCE.removeFileFromTracking(file, entry.getKey());
             }
         }
 

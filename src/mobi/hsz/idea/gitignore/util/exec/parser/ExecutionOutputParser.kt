@@ -22,33 +22,34 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.util.exec.parser;
+package mobi.hsz.idea.gitignore.util.exec.parser
 
-import com.intellij.execution.process.ProcessOutputTypes;
-import com.intellij.openapi.util.Key;
-import com.intellij.openapi.util.text.StringUtil;
-import com.intellij.util.containers.ContainerUtil;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.ArrayList;
+import com.intellij.execution.process.ProcessOutputTypes
+import com.intellij.openapi.util.Key
+import com.intellij.openapi.util.text.StringUtil
+import com.intellij.util.containers.ContainerUtil
+import java.util.*
 
 /**
  * Abstract output parser for the ExternalExec process outputs.
  *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
  * @since 1.5
  */
-public abstract class ExecutionOutputParser<T> {
-    /** Outputs list. */
-    @NotNull
-    private final ArrayList<T> outputs = ContainerUtil.newArrayList();
+abstract class ExecutionOutputParser<T> {
+    /** Outputs list.  */
+    /**
+     * Returns collected output.
+     *
+     * @return parsed output
+     */
+    val output: ArrayList<T>? = ContainerUtil.newArrayList()
 
-    /** Exit code value. */
-    private int exitCode;
+    /** Exit code value.  */
+    private var exitCode: Int = 0
 
-    /** Error occurred during the output parsing. */
-    private boolean errorsReported;
+    /** Error occurred during the output parsing.  */
+    private var errorsReported: Boolean = false
 
     /**
      * Handles single output line.
@@ -56,17 +57,17 @@ public abstract class ExecutionOutputParser<T> {
      * @param text       execution response
      * @param outputType output type
      */
-    public void onTextAvailable(@NotNull String text, @NotNull Key outputType) {
-        if (outputType == ProcessOutputTypes.SYSTEM) {
-            return;
+    fun onTextAvailable(text: String, outputType: Key<*>) {
+        if (outputType === ProcessOutputTypes.SYSTEM) {
+            return
         }
 
-        if (outputType == ProcessOutputTypes.STDERR) {
-            errorsReported = true;
-            return;
+        if (outputType === ProcessOutputTypes.STDERR) {
+            errorsReported = true
+            return
         }
 
-        ContainerUtil.addIfNotNull(outputs, parseOutput(StringUtil.trimEnd(text, "\n").trim()));
+        ContainerUtil.addIfNotNull(output!!, parseOutput(StringUtil.trimEnd(text, "\n").trim { it <= ' ' }))
     }
 
     /**
@@ -75,26 +76,15 @@ public abstract class ExecutionOutputParser<T> {
      * @param text input data
      * @return single parsed result
      */
-    @Nullable
-    protected abstract T parseOutput(@NotNull String text);
+    protected abstract fun parseOutput(text: String): T?
 
     /**
      * Method called at the end of the parsing process.
      *
      * @param exitCode result of the executable call
      */
-    public void notifyFinished(int exitCode) {
-        this.exitCode = exitCode;
-    }
-
-    /**
-     * Returns collected output.
-     *
-     * @return parsed output
-     */
-    @Nullable
-    public ArrayList<T> getOutput() {
-        return outputs;
+    fun notifyFinished(exitCode: Int) {
+        this.exitCode = exitCode
     }
 
     /**
@@ -102,7 +92,6 @@ public abstract class ExecutionOutputParser<T> {
      *
      * @return error was reported
      */
-    public boolean isErrorsReported() {
-        return errorsReported || exitCode != 0;
-    }
+    val isErrorsReported: Boolean
+        get() = errorsReported || exitCode != 0
 }

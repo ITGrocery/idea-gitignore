@@ -22,34 +22,26 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.util.exec.parser;
+package mobi.hsz.idea.gitignore.util.exec.parser
 
-import com.intellij.openapi.util.text.StringUtil;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.openapi.util.text.StringUtil
 
 /**
- * Parser for the {@link mobi.hsz.idea.gitignore.util.exec.ExternalExec#GIT_UNIGNORED_FILES} command that
- * returns unignored files entries list.
+ * Parser for [mobi.hsz.idea.gitignore.util.exec.ExternalExec.GIT_IGNORED_FILES] output.
  *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
- * @since 1.5
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
+ * @since 2.0
  */
-public class GitUnignoredFilesOutputParser extends ExecutionOutputParser<String> {
-    /** Prefix to remove from the command's result. */
-    @NonNls
-    private static final String GIT_UNIGNORED_FILES_PREFIX = "Would remove";
-
+class IgnoredFilesParser : ExecutionOutputParser<String>() {
     /**
      * Parses single entries and removes git output prefixes.
      *
      * @param text input data
      * @return single unignored entry
      */
-    @Nullable
-    @Override
-    protected String parseOutput(@NotNull String text) {
-        return StringUtil.trim(StringUtil.trimStart(text, GIT_UNIGNORED_FILES_PREFIX));
-    }
+    override fun parseOutput(text: String): String? =
+            when {
+                StringUtil.startsWith(text, "!! ") -> text.substring(3)
+                else -> null
+            }
 }

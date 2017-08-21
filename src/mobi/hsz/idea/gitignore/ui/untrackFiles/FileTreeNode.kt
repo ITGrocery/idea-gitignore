@@ -22,37 +22,44 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.psi;
+package mobi.hsz.idea.gitignore.ui.untrackFiles
 
-import com.intellij.psi.tree.IElementType;
-import mobi.hsz.idea.gitignore.IgnoreBundle;
-import mobi.hsz.idea.gitignore.lang.IgnoreLanguage;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.dvcs.repo.Repository
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.vfs.VirtualFile
+import com.intellij.ui.CheckedTreeNode
 
 /**
- * Token type definition.
+ * [FileTreeNode] is an implementation of checkbox tree node.
  *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
- * @since 0.1
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
+ * @since 1.7
  */
-public class IgnoreTokenType extends IElementType {
-    /** Token debug name. */
-    private final String debugName;
-
-    /** Builds a new instance of @{link IgnoreTokenType}. */
-    public IgnoreTokenType(@NotNull @NonNls String debugName) {
-        super(debugName, IgnoreLanguage.INSTANCE);
-        this.debugName = debugName;
-    }
-
-    /**
-     * String interpretation of the token type.
-     *
-     * @return string representation
-     */
-    @Override
-    public String toString() {
-        return IgnoreBundle.messageOrDefault("tokenType." + debugName, "IgnoreTokenType." + super.toString());
-    }
-}
+class FileTreeNode
+/**
+ * Creates a new instance of [FileTreeNode].
+ *
+ * @param file current file to render
+ */
+(
+        /** Current [Project] element.  */
+        /**
+         * Returns current project.
+         *
+         * @return project
+         */
+        val project: Project,
+        /** Current [VirtualFile] element.  */
+        /**
+         * Returns current file.
+         *
+         * @return file
+         */
+        val file: VirtualFile,
+        /** [Repository] of the given [.file].  */
+        /**
+         * Returns [Repository] for given [.file].
+         *
+         * @return repository
+         */
+        val repository: Repository?) : CheckedTreeNode(file)

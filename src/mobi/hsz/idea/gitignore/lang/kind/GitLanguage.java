@@ -61,7 +61,7 @@ public class GitLanguage extends IgnoreLanguage {
                     @NotNull
                     @Override
                     public Collection<VirtualFile> fetch(@NotNull Project project) {
-                        return ContainerUtil.newArrayList(ExternalExec.getGitExcludesFile());
+                        return ContainerUtil.newArrayList(ExternalExec.INSTANCE.getGitExcludesFile());
                     }
                 }
 

@@ -22,27 +22,29 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.lexer;
+package mobi.hsz.idea.gitignore.psi
 
-import com.intellij.lexer.FlexAdapter;
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.vfs.VirtualFile;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.extapi.psi.ASTWrapperPsiElement
+import com.intellij.lang.ASTNode
+import com.intellij.psi.PsiReference
+import com.intellij.psi.impl.source.resolve.reference.ReferenceProvidersRegistry
 
 /**
- * Definition of {@link com.intellij.lexer.FlexAdapter}.
+ * Definition of [ASTWrapperPsiElement].
  *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
- * @since 0.1
+ * @author Alexander Zolotov <alexander.zolotov></alexander.zolotov>@jetbrains.com>
+ * @since 0.5
  */
-public class IgnoreLexerAdapter extends FlexAdapter {
-    /** Builds a new instance of {@link IgnoreLexerAdapter}. */
-    public IgnoreLexerAdapter(Project project) {
-        this(project, null);
-    }
+open class IgnoreElementImpl
+/** Build a new instance of [IgnoreElementImpl].  */
+(node: ASTNode) : ASTWrapperPsiElement(node) {
 
-    /** Builds a new instance of {@link IgnoreLexerAdapter}. */
-    public IgnoreLexerAdapter(Project project, @Nullable VirtualFile virtualFile) {
-        super(new IgnoreLexer(virtualFile));
+    /**
+     * Gets [PsiReference] list for given element.
+     *
+     * @return [PsiReference] list
+     */
+    override fun getReferences(): Array<PsiReference> {
+        return ReferenceProvidersRegistry.getReferencesFromProviders(this)
     }
 }

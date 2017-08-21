@@ -22,28 +22,31 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.util.exec.parser;
+package mobi.hsz.idea.gitignore.psi
 
-import com.intellij.openapi.util.text.StringUtil;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import com.intellij.psi.tree.IElementType
+import mobi.hsz.idea.gitignore.IgnoreBundle
+import mobi.hsz.idea.gitignore.lang.IgnoreLanguage
+import org.jetbrains.annotations.NonNls
 
 /**
- * Parser for {@link mobi.hsz.idea.gitignore.util.exec.ExternalExec#GIT_IGNORED_FILES} output.
+ * Token type definition.
  *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
- * @since 2.0
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
+ * @since 0.1
  */
-public class IgnoredFilesParser extends ExecutionOutputParser<String> {
+class IgnoreTokenType
+/** Builds a new instance of @{link IgnoreTokenType}.  */
+(
+        /** Token debug name.  */
+        @param:NonNls private val debugName: String) : IElementType(debugName, IgnoreLanguage.INSTANCE) {
+
     /**
-     * Parses single entries and removes git output prefixes.
+     * String interpretation of the token type.
      *
-     * @param text input data
-     * @return single unignored entry
+     * @return string representation
      */
-    @Nullable
-    @Override
-    protected String parseOutput(@NotNull String text) {
-        return StringUtil.startsWith(text, "!! ") ? text.substring(3) : null;
+    override fun toString(): String {
+        return IgnoreBundle.messageOrDefault("tokenType." + debugName, "IgnoreTokenType." + super.toString())
     }
 }

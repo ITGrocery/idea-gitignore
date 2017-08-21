@@ -534,7 +534,7 @@ public class IgnoreManager extends AbstractProjectComponent implements DumbAware
                     continue;
                 }
                 final VirtualFile root = repository.getRoot();
-                for (String path : ExternalExec.getIgnoredFiles(repository)) {
+                for (String path : ExternalExec.INSTANCE.getIgnoredFiles(repository)) {
                     final VirtualFile file = root.findFileByRelativePath(path);
                     if (file != null) {
                         result.put(file, repository);

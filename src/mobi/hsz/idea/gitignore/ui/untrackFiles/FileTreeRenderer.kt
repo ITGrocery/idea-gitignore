@@ -22,25 +22,22 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.ui.untrackFiles;
+package mobi.hsz.idea.gitignore.ui.untrackFiles
 
-import com.intellij.openapi.project.Project;
-import com.intellij.openapi.util.Iconable;
-import com.intellij.openapi.vfs.VirtualFile;
-import com.intellij.ui.CheckboxTree;
-import com.intellij.util.IconUtil;
-
-import javax.swing.*;
+import com.intellij.openapi.util.Iconable
+import com.intellij.ui.CheckboxTree
+import com.intellij.util.IconUtil
+import javax.swing.JTree
 
 /**
- * {@link FileTreeRenderer} implementation of checkbox renderer.
+ * [FileTreeRenderer] implementation of checkbox renderer.
  *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
  * @since 1.7
  */
-public class FileTreeRenderer extends CheckboxTree.CheckboxTreeCellRenderer {
+class FileTreeRenderer : CheckboxTree.CheckboxTreeCellRenderer() {
     /**
-     * Renders checkbox tree cell filled with @{link {@link FileTreeNode} data.
+     * Renders checkbox tree cell filled with @{link [FileTreeNode] data.
      *
      * @param tree     current working tree
      * @param value    template data
@@ -50,18 +47,18 @@ public class FileTreeRenderer extends CheckboxTree.CheckboxTreeCellRenderer {
      * @param row      node is a row
      * @param hasFocus node has focus
      */
-    public void customizeRenderer(final JTree tree, final Object value, final boolean selected,
-                                  final boolean expanded, final boolean leaf, final int row,
-                                  final boolean hasFocus) {
-        if (!(value instanceof FileTreeNode)) {
-            return;
+    override fun customizeRenderer(tree: JTree, value: Any?, selected: Boolean,
+                                   expanded: Boolean, leaf: Boolean, row: Int,
+                                   hasFocus: Boolean) {
+        if (value !is FileTreeNode) {
+            return
         }
 
-        final FileTreeNode node = (FileTreeNode) value;
-        final VirtualFile file = node.getFile();
-        final Project project = node.getProject();
+        val node = value as FileTreeNode?
+        val file = node!!.file
+        val project = node.project
 
-        getTextRenderer().append(file.getName());
-        getTextRenderer().setIcon(IconUtil.getIcon(file, Iconable.ICON_FLAG_READ_STATUS, project));
+        textRenderer.append(file.name)
+        textRenderer.icon = IconUtil.getIcon(file, Iconable.ICON_FLAG_READ_STATUS, project)
     }
 }

@@ -22,26 +22,45 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.util.exec.parser;
+package mobi.hsz.idea.gitignore.psi
 
-import org.jetbrains.annotations.NotNull;
+import com.intellij.psi.PsiElement
+import mobi.hsz.idea.gitignore.IgnoreBundle
+
+import java.util.regex.Pattern
 
 /**
- * Simple parser that returns trimmed input.
- *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
- * @since 1.7
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
+ * @since 1.0
  */
-public class SimpleOutputParser extends ExecutionOutputParser<String> {
+interface IgnoreEntryBase : PsiElement {
     /**
-     * Parses single entries and removes git output prefixes.
+     * Checks if current element is negated.
      *
-     * @param text input data
-     * @return single unignored entry
+     * @return is negated
      */
-    @NotNull
-    @Override
-    protected String parseOutput(@NotNull String text) {
-        return text.trim();
-    }
+    val isNegated: Boolean
+
+    /**
+     * Returns current element's syntax.
+     *
+     * @return current syntax
+     *
+     * @see {@link IgnoreBundle.Syntax}
+     */
+    val syntax: IgnoreBundle.Syntax
+
+    /**
+     * Returns current value.
+     *
+     * @return value
+     */
+    val value: String
+
+    /**
+     * Returns current pattern.
+     *
+     * @return pattern
+     */
+    val pattern: Pattern?
 }

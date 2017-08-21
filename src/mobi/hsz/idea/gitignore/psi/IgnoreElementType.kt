@@ -22,50 +22,18 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.psi;
+package mobi.hsz.idea.gitignore.psi
 
-import com.intellij.psi.PsiElement;
-import mobi.hsz.idea.gitignore.IgnoreBundle;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.util.regex.Pattern;
+import com.intellij.psi.tree.IElementType
+import mobi.hsz.idea.gitignore.lang.IgnoreLanguage
+import org.jetbrains.annotations.NonNls
 
 /**
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
- * @since 1.0
+ * Custom element type.
+ *
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
+ * @since 0.1
  */
-public interface IgnoreEntryBase extends PsiElement {
-    /**
-     * Checks if current element is negated.
-     *
-     * @return is negated
-     */
-    boolean isNegated();
-
-    /**
-     * Returns current element's syntax.
-     *
-     * @return current syntax
-     *
-     * @see {@link IgnoreBundle.Syntax}
-     */
-    @NotNull
-    IgnoreBundle.Syntax getSyntax();
-
-    /**
-     * Returns current value.
-     *
-     * @return value
-     */
-    @NotNull
-    String getValue();
-
-    /**
-     * Returns current pattern.
-     *
-     * @return pattern
-     */
-    @Nullable
-    Pattern getPattern();
-}
+class IgnoreElementType
+/** Build a new instance of @{link IgnoreElementType}  */
+(@NonNls debugName: String) : IElementType(debugName, IgnoreLanguage.INSTANCE)

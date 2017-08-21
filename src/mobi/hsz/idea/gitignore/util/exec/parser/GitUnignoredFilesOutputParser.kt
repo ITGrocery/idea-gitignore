@@ -22,35 +22,32 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.util.exec.parser;
+package mobi.hsz.idea.gitignore.util.exec.parser
 
-import com.intellij.openapi.util.text.StringUtil;
-import com.intellij.openapi.vfs.VfsUtil;
-import com.intellij.openapi.vfs.VirtualFile;
-import mobi.hsz.idea.gitignore.util.Utils;
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import java.io.File;
+import com.intellij.openapi.util.text.StringUtil
+import org.jetbrains.annotations.NonNls
 
 /**
- * Parser for the {@link mobi.hsz.idea.gitignore.util.exec.ExternalExec}#GIT_CONFIG_EXCLUDES_FILE command that
- * returns excludes Git file instance.
+ * Parser for the [mobi.hsz.idea.gitignore.util.exec.ExternalExec.GIT_UNIGNORED_FILES] command that
+ * returns unignored files entries list.
  *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
  * @since 1.5
  */
-public class GitExcludesOutputParser extends ExecutionOutputParser<VirtualFile> {
+class GitUnignoredFilesOutputParser : ExecutionOutputParser<String>() {
+
     /**
-     * Parses output and returns {@link VirtualFile} instance of the GitFileType.
+     * Parses single entries and removes git output prefixes.
      *
      * @param text input data
-     * @return excludes ignore file instance
+     * @return single unignored entry
      */
-    @Nullable
-    @Override
-    protected VirtualFile parseOutput(@NotNull final String text) {
-        final String path = Utils.resolveUserDir(text);
-        return StringUtil.isNotEmpty(path) ? VfsUtil.findFileByIoFile(new File(path), true) : null;
+    override fun parseOutput(text: String): String? =
+            StringUtil.trim(StringUtil.trimStart(text, GIT_UNIGNORED_FILES_PREFIX))
+
+    companion object {
+        /** Prefix to remove from the command's result.  */
+        @NonNls
+        private val GIT_UNIGNORED_FILES_PREFIX = "Would remove"
     }
 }

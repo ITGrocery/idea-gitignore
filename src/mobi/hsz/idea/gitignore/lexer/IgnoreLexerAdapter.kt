@@ -22,22 +22,19 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.psi;
+package mobi.hsz.idea.gitignore.lexer
 
-import com.intellij.psi.tree.IElementType;
-import mobi.hsz.idea.gitignore.lang.IgnoreLanguage;
-import org.jetbrains.annotations.NonNls;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.lexer.FlexAdapter
+import com.intellij.openapi.project.Project
+import com.intellij.openapi.vfs.VirtualFile
 
 /**
- * Custom element type.
+ * Definition of [com.intellij.lexer.FlexAdapter].
  *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
  * @since 0.1
  */
-public class IgnoreElementType extends IElementType {
-    /** Build a new instance of @{link IgnoreElementType} */
-    public IgnoreElementType(@NotNull @NonNls String debugName) {
-        super(debugName, IgnoreLanguage.INSTANCE);
-    }
-}
+class IgnoreLexerAdapter
+/** Builds a new instance of [IgnoreLexerAdapter].  */
+@JvmOverloads constructor(project: Project, virtualFile: VirtualFile? = null) : FlexAdapter(IgnoreLexer(virtualFile))
+/** Builds a new instance of [IgnoreLexerAdapter].  */

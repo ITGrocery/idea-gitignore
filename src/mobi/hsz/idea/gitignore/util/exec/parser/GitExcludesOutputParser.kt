@@ -22,34 +22,34 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore.psi;
+package mobi.hsz.idea.gitignore.util.exec.parser
 
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.PsiReference;
-import com.intellij.psi.impl.source.resolve.reference.ReferenceProvidersRegistry;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.openapi.util.text.StringUtil
+import com.intellij.openapi.vfs.VfsUtil
+import com.intellij.openapi.vfs.VirtualFile
+import mobi.hsz.idea.gitignore.util.Utils
+
+import java.io.File
 
 /**
- * Definition of {@link ASTWrapperPsiElement}.
+ * Parser for the [mobi.hsz.idea.gitignore.util.exec.ExternalExec]#GIT_CONFIG_EXCLUDES_FILE command that
+ * returns excludes Git file instance.
  *
- * @author Alexander Zolotov <alexander.zolotov@jetbrains.com>
- * @since 0.5
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
+ * @since 1.5
  */
-public class IgnoreElementImpl extends ASTWrapperPsiElement {
-    /** Build a new instance of {@link IgnoreElementImpl}. */
-    public IgnoreElementImpl(ASTNode node) {
-        super(node);
-    }
-
+class GitExcludesOutputParser : ExecutionOutputParser<VirtualFile>() {
     /**
-     * Gets {@link PsiReference} list for given element.
+     * Parses output and returns [VirtualFile] instance of the GitFileType.
      *
-     * @return {@link PsiReference} list
+     * @param text input data
+     * @return excludes ignore file instance
      */
-    @NotNull
-    @Override
-    public PsiReference[] getReferences() {
-        return ReferenceProvidersRegistry.getReferencesFromProviders(this);
+    override fun parseOutput(text: String): VirtualFile? {
+        val path = Utils.resolveUserDir(text)
+        return when {
+            StringUtil.isNotEmpty(path) -> VfsUtil.findFileByIoFile(File(path), true)
+            else -> null
+        }
     }
 }
