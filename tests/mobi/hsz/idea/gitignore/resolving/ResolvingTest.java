@@ -66,7 +66,7 @@ public class ResolvingTest extends LightPlatformCodeInsightFixtureTestCase {
     }
 
     private void doTest(@NotNull String beforeText, String... expectedResolve) {
-        myFixture.configureByText(GitFileType.Companion.getINSTANCE(), beforeText);
+        myFixture.configureByText(GitFileType.INSTANCE, beforeText);
         PsiPolyVariantReference reference = ((PsiPolyVariantReference) myFixture.getReferenceAtCaretPosition());
         assertNotNull(reference);
 

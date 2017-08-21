@@ -34,7 +34,7 @@ public class RenameTest extends LightPlatformCodeInsightFixtureTestCase {
     }
 
     private void doTest(@NotNull String beforeText, @NotNull String newName, @NotNull String afterText) {
-        myFixture.configureByText(GitFileType.Companion.getINSTANCE(), beforeText);
+        myFixture.configureByText(GitFileType.INSTANCE, beforeText);
         myFixture.renameElementAtCaret(newName);
         myFixture.checkResult(afterText);
     }
