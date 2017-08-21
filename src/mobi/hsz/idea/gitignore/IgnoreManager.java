@@ -329,7 +329,8 @@ public class IgnoreManager extends AbstractProjectComponent implements DumbAware
                 String relativePath;
                 final VirtualFile entryFile = value.getFile();
                 if (fileType instanceof GitExcludeFileType) {
-                    VirtualFile workingDirectory = GitExcludeFileType.Companion.getWorkingDirectory(myProject, entryFile);
+                    VirtualFile workingDirectory = GitExcludeFileType.Companion
+                            .getWorkingDirectory(myProject, entryFile);
                     if (workingDirectory == null || !Utils.isUnder(file, workingDirectory)) {
                         continue;
                     }
