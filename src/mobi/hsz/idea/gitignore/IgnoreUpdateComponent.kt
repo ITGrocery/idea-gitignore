@@ -22,42 +22,37 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore;
+package mobi.hsz.idea.gitignore
 
-import com.intellij.openapi.components.AbstractProjectComponent;
-import com.intellij.openapi.project.Project;
-import mobi.hsz.idea.gitignore.util.Notify;
-import org.jetbrains.annotations.NotNull;
+import com.intellij.openapi.components.AbstractProjectComponent
+import com.intellij.openapi.project.Project
+import mobi.hsz.idea.gitignore.util.Notify
 
 /**
  * ProjectComponent instance to display plugin's update information.
  *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
  * @since 1.3
  */
-public class IgnoreUpdateComponent extends AbstractProjectComponent {
-    /** {@link IgnoreApplicationComponent} instance. */
-    private IgnoreApplicationComponent application;
+class IgnoreUpdateComponent
 
-    /**
-     * Constructor.
-     *
-     * @param project current project
-     */
-    protected IgnoreUpdateComponent(@NotNull Project project) {
-        super(project);
-    }
+/**
+ * Constructor.
+ *
+ * @param project current project
+ */
+private constructor(project: Project) : AbstractProjectComponent(project) {
+    /** [IgnoreApplicationComponent] instance. */
+    private var application: IgnoreApplicationComponent? = null
 
     /** Component initialization method. */
-    @Override
-    public void initComponent() {
-        application = IgnoreApplicationComponent.getInstance();
+    override fun initComponent() {
+        application = IgnoreApplicationComponent.getInstance()
     }
 
     /** Component dispose method. */
-    @Override
-    public void disposeComponent() {
-        application = null;
+    override fun disposeComponent() {
+        application = null
     }
 
     /**
@@ -65,18 +60,13 @@ public class IgnoreUpdateComponent extends AbstractProjectComponent {
      *
      * @return component's name
      */
-    @NotNull
-    @Override
-    public String getComponentName() {
-        return "IgnoreUpdateComponent";
-    }
+    override fun getComponentName(): String = "IgnoreUpdateComponent"
 
     /** Method called when project is opened. */
-    @Override
-    public void projectOpened() {
-        if (application.isUpdated() && !application.isUpdateNotificationShown()) {
-            application.setUpdateNotificationShown(true);
-            Notify.showUpdate(myProject);
+    override fun projectOpened() {
+        if (application!!.isUpdated && !application!!.isUpdateNotificationShown) {
+            application!!.isUpdateNotificationShown = true
+            Notify.showUpdate(myProject)
         }
     }
 }

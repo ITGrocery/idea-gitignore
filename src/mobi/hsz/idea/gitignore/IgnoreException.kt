@@ -22,13 +22,12 @@
  * SOFTWARE.
  */
 
-package mobi.hsz.idea.gitignore;
+package mobi.hsz.idea.gitignore
 
 /**
- * Ignore {@link Exception} definition.
+ * Ignore [Exception] definition.
  *
- * @author Jakub Chrzanowski <jakub@hsz.mobi>
+ * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
  * @since 0.5.1
  */
-public class IgnoreException extends Exception {
-}
+open class IgnoreException : Exception()
