@@ -24,49 +24,50 @@
 
 package mobi.hsz.idea.gitignore
 
-import com.intellij.openapi.components.AbstractProjectComponent
-import com.intellij.openapi.project.Project
-import mobi.hsz.idea.gitignore.util.Notify
+import com.intellij.openapi.application.ApplicationManager
+import com.intellij.openapi.components.ApplicationComponent
+import mobi.hsz.idea.gitignore.settings.IgnoreSettings
+import mobi.hsz.idea.gitignore.util.Utils
 
 /**
- * ProjectComponent instance to display plugin's update information.
- *
  * @author Jakub Chrzanowski <jakub@hsz.mobi>
  * @since 1.3
  */
-class IgnoreUpdateComponent
+class IgnoreApplicationComponent : ApplicationComponent {
+    /** Plugin has been updated with the current run. */
+    var updated: Boolean = false
+        private set
 
-/**
- * Constructor.
- *
- * @param project current project
- */
-private constructor(project: Project) : AbstractProjectComponent(project) {
-    /** [IgnoreApplicationComponent] instance. */
-    private var application: IgnoreApplicationComponent? = null
+    /** Plugin update notification has been shown. */
+    var notificationShown: Boolean = false
 
     /** Component initialization method. */
     override fun initComponent() {
-        application = IgnoreApplicationComponent.instance
+        /* The settings storage object. */
+        val settings = IgnoreSettings.getInstance()
+        updated = Utils.getVersion() != settings.version
+        if (updated) {
+            settings.version = Utils.getVersion()
+        }
     }
 
     /** Component dispose method. */
-    override fun disposeComponent() {
-        application = null
-    }
+    override fun disposeComponent() {}
 
     /**
      * Returns component's name.
      *
      * @return component's name
      */
-    override fun getComponentName(): String = "IgnoreUpdateComponent"
+    override fun getComponentName(): String = "IgnoreApplicationComponent"
 
-    /** Method called when project is opened. */
-    override fun projectOpened() {
-        if (application!!.updated && !application!!.notificationShown) {
-            application!!.notificationShown = true
-            Notify.showUpdate(myProject)
-        }
+    companion object {
+        /**
+         * Get Ignore Application Component
+         *
+         * @return Ignore Application Component
+         */
+        val instance: IgnoreApplicationComponent
+            get() = ApplicationManager.getApplication().getComponent(IgnoreApplicationComponent::class.java)
     }
 }

@@ -27,7 +27,7 @@ package mobi.hsz.idea.gitignore
 /**
  * Ignore [Exception] definition.
  *
- * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
+ * @author Jakub Chrzanowski <jakub@hsz.mobi>
  * @since 0.5.1
  */
 open class IgnoreException : Exception()

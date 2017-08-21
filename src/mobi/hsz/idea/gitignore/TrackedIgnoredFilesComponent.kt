@@ -42,7 +42,7 @@ import java.util.concurrent.ConcurrentMap
  * ProjectComponent instance to handle [IgnoreManager.TrackedIgnoredListener] event
  * and display [Notification] about tracked and ignored files which invokes [UntrackFilesDialog].
  *
- * @author Jakub Chrzanowski <jakub></jakub>@hsz.mobi>
+ * @author Jakub Chrzanowski <jakub@hsz.mobi>
  * @since 1.7
  */
 class TrackedIgnoredFilesComponent
@@ -53,7 +53,6 @@ class TrackedIgnoredFilesComponent
  * @param project current project
  */
 private constructor(project: Project) : AbstractProjectComponent(project), IgnoreManager.TrackedIgnoredListener {
-
     /** [MessageBusConnection] instance. */
     private var messageBus: MessageBusConnection? = null
 
@@ -101,10 +100,9 @@ private constructor(project: Project) : AbstractProjectComponent(project), Ignor
                         IgnoreBundle.message("notification.untrack.content"),
                         NotificationType.WARNING
                 ) { notification, event ->
-                    if (DISABLE_ACTION == event.description) {
-                        settings!!.isInformTrackedIgnored = false
-                    } else {
-                        UntrackFilesDialog(myProject, files).show()
+                    when (DISABLE_ACTION) {
+                        event.description -> settings!!.isInformTrackedIgnored = false
+                        else -> UntrackFilesDialog(myProject, files).show()
                     }
                     notification.expire()
                 }
